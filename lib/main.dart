@@ -10,13 +10,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter Registration Page',
       theme: ThemeData(
 
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Registration Page'),
     );
   }
 }
@@ -32,14 +32,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
-
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,29 +42,121 @@ class _MyHomePageState extends State<MyHomePage> {
 
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
 
-        title: Text(widget.title),
-      ),
-      body: Center(
-
-        child: Column(
-
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+        title: Center(
+            child:
+            Text(widget.title,
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
             ),
-          ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      body: SingleChildScrollView(
+        child: Center(
+
+          child: Column(
+        
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+            const SizedBox(height: 15,),
+
+              _builtInputLabel('name'),
+              _builtTextField(hintText: 'Enter your full name'),
+
+              const SizedBox(height: 15,),
+              const Text('Email'),
+              const SizedBox(height: 15,),
+              const TextField(
+                decoration: InputDecoration(
+                  hintText: 'Enter you email',
+                    hintStyle: TextStyle(color: Colors.grey),
+                    border: OutlineInputBorder()
+                ),
+              ),
+        
+              const SizedBox(height: 15,),
+              const Text('Phone Number'),
+              const SizedBox(height: 15,),
+              const TextField(
+                decoration: InputDecoration(
+                  hintText: 'Enter you phone number',
+                    hintStyle: TextStyle(color: Colors.grey),
+                    border: OutlineInputBorder()
+                ),
+              ),
+        
+              const SizedBox(height: 15,),
+              const Text('Country'),
+              const SizedBox(height: 15,),
+              const TextField(
+                decoration: InputDecoration(
+                  hintText: 'Enter you country',
+                    hintStyle: TextStyle(color: Colors.grey),
+                    border: OutlineInputBorder()
+                ),
+              ),
+        
+              const SizedBox(height: 15,),
+              const Text('Password'),
+              const SizedBox(height: 15,),
+              const TextField(
+                decoration: InputDecoration(
+                  hintText: 'Enter your password',
+                    hintStyle: TextStyle(color: Colors.grey),
+                    contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                    border: OutlineInputBorder()
+                ),
+                obscureText: true,
+              ),
+              const SizedBox(height: 15,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                      onPressed: (){
+
+                      },
+                      child: const Text('Submit')
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
       ),
+
     );
   }
+}
+
+Widget _builtInputLabel(String label){
+  return Text(
+    label,
+    style:
+    const TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.w600,
+      color:Colors.grey
+    ),
+  );
+}
+
+Widget _builtTextField(
+    {required String hintText, bool isPassword = false})
+{
+  return TextField(
+    decoration: InputDecoration(
+      hintText: hintText,
+      hintStyle: const TextStyle(color: Colors.grey),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8)
+      ),
+      filled: true,
+      fillColor: Colors.grey.shade100,
+    ),
+        obscureText: isPassword,
+  );
 }
